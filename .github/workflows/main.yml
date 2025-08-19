@@ -20,7 +20,7 @@ jobs:
       run: pip install pyinstaller pandas openpyxl xlrd
         
     - name: Build
-      run: pyinstaller --onefile --windowed --name="ExcelBlankCounter" blank_counter.py
+      run: pyinstaller --onefile --windowed --name="ExcelBlankCounter" blank_counter_app.py
         
     - name: Upload
       uses: actions/upload-artifact@v4
