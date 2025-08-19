@@ -1,0 +1,29 @@
+name: Build EXE
+
+on:
+  workflow_dispatch:  # Manual trigger only
+
+jobs:
+  build:
+    runs-on: windows-latest
+    
+    steps:
+    - name: Get code
+      uses: actions/checkout@v4
+      
+    - name: Setup Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+        
+    - name: Install stuff
+      run: pip install pyinstaller pandas openpyxl xlrd
+        
+    - name: Build
+      run: pyinstaller --onefile --windowed --name="ExcelBlankCounter" blank_counter.py
+        
+    - name: Upload
+      uses: actions/upload-artifact@v4
+      with:
+        name: my-exe
+        path: dist/ExcelBlankCounter.exe
